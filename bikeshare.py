@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from tabulate import tabulate
 
+# Some variable declaration
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -11,9 +12,12 @@ cities_ls =    [ 'chicago', 'new york city','washington']
 months_ls =    ['jannuary', 'february', 'march','april','may','june','all']
 days_ls  =     ['monday','tuesday','wednessday','thursday','friday','saturday','sunday','all']
 
+# Initial output in the command line
 print('\n')
 print('-'*80)   
 print('Hello! Let\'s explore some US bikeshare data!')
+
+# Function definitions
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
