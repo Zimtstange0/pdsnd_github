@@ -9,7 +9,7 @@ CITY_DATA = { 'chicago': 'chicago.csv',
 
 cities_ls =    [ 'chicago', 'new york city','washington']
 months_ls =    ['jannuary', 'february', 'march','april','may','june','all']
-days  =     ['monday','tuesday','wednessday','thursday','friday','saturday','sunday','all']
+days_ls  =     ['monday','tuesday','wednessday','thursday','friday','saturday','sunday','all']
 
 print('\n')
 print('-'*80)   
@@ -61,10 +61,10 @@ def get_filters():
     # get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
         print('\nPossible selections are: ')
-        print('', *days, sep=' | ')    
+        print('', *days_ls, sep=' | ')    
         day = input('Which day do you want to analyse?\n ').lower()
 
-        if day in days:
+        if day in days_ls:
             check = input('You want to analyze: {} (y/n)\n '.format(day.capitalize()))
             
             if check == 'y':
@@ -124,7 +124,7 @@ def load_data(city, month, day):
     # filter by day of week if applicable
     if day != 'all':
         # filter by day of week to create the new dataframe
-        days_ind = days.index(day)
+        days_ind = days_ls.index(day)
 
         # filter by month to create the new dataframe
         df_mask = df['day_of_week'] == days_ind
@@ -147,7 +147,7 @@ def time_stats(df):
 
     # display the most common day of week
     most_day = df['day_of_week'].value_counts().index[0]
-    print('... Day is:  [ {} ]'.format(days[most_day].capitalize())) 
+    print('... Day is:  [ {} ]'.format(days_ls[most_day].capitalize())) 
 
     # display the most common start hour
     most_hour= df['start_hour'].value_counts().index[0]
