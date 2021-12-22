@@ -237,6 +237,13 @@ def display_data(df):
         user_request = input('\nDo you want to see the next 5 lines (y/n)?: ').lower()
         
 def main():
+    """ This is the main function which calles all the other subfunctions
+    
+    Args: No arguments needed
+
+    Returns: Only output in the command line is generated
+    
+    """
     while True:
         city, month, day = get_filters()
         df, df_raw = load_data(city, month, day)
