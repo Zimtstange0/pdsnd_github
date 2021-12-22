@@ -7,7 +7,7 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
-cities =    [ 'chicago', 'new york city','washington']
+cities_ls =    [ 'chicago', 'new york city','washington']
 months =    ['jannuary', 'february', 'march','april','may','june','all']
 days  =     ['monday','tuesday','wednessday','thursday','friday','saturday','sunday','all']
 
@@ -27,10 +27,10 @@ def get_filters():
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
         print('\nPossible selections are: ')
-        print('', *cities, sep=' | ')
+        print('', *cities_ls, sep=' | ')
         city = input('Which city do you want to analyse?\n ').lower()        # lower() makes any upper letter to lower letter
     
-        if city in cities:
+        if city in cities_ls:
             check = input('You want to analyze: {} (y/n)\n '.format(city.capitalize()))
                 
             if check == 'y':
