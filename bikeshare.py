@@ -3,17 +3,21 @@ import pandas as pd
 import numpy as np
 from tabulate import tabulate
 
+# Some variable declaration
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
-cities =    [ 'chicago', 'new york city','washington']
-months =    ['jannuary', 'february', 'march','april','may','june','all']
-days  =     ['monday','tuesday','wednessday','thursday','friday','saturday','sunday','all']
+cities_ls =    [ 'chicago', 'new york city','washington']
+months_ls =    ['jannuary', 'february', 'march','april','may','june','all']
+days_ls  =     ['monday','tuesday','wednessday','thursday','friday','saturday','sunday','all']
 
+# Initial output in the command line
 print('\n')
 print('-'*80)   
 print('Hello! Let\'s explore some US bikeshare data!')
+
+# Function definitions
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -27,10 +31,10 @@ def get_filters():
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
         print('\nPossible selections are: ')
-        print('', *cities, sep=' | ')
+        print('', *cities_ls, sep=' | ')
         city = input('Which city do you want to analyse?\n ').lower()        # lower() makes any upper letter to lower letter
     
-        if city in cities:
+        if city in cities_ls:
             check = input('You want to analyze: {} (y/n)\n '.format(city.capitalize()))
                 
             if check == 'y':
@@ -44,10 +48,10 @@ def get_filters():
     # get user input for month (all, january, february, ... , june)
     while True:
         print('\nPossible selections are: ')
-        print('', *months, sep=' | ')
+        print('', *months_ls, sep=' | ')
         month = input('Which month do you want to analyse?\n ').lower()
 
-        if month in months:
+        if month in months_ls:
             check = input('You want to analyze: {} (y/n)\n '.format(month.capitalize()))
             
             if check == 'y':
@@ -61,10 +65,10 @@ def get_filters():
     # get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
         print('\nPossible selections are: ')
-        print('', *days, sep=' | ')    
+        print('', *days_ls, sep=' | ')    
         day = input('Which day do you want to analyse?\n ').lower()
 
-        if day in days:
+        if day in days_ls:
             check = input('You want to analyze: {} (y/n)\n '.format(day.capitalize()))
             
             if check == 'y':
@@ -113,7 +117,7 @@ def load_data(city, month, day):
     # filter by month if applicable
     if month != 'all':
         # use the index of the months list to get the corresponding int
-        month_ind = months.index(month)
+        month_ind = months_ls.index(month)
 
         # filter by month to create the new dataframe
         df_mask = df['month'] == month_ind + 1
@@ -124,7 +128,7 @@ def load_data(city, month, day):
     # filter by day of week if applicable
     if day != 'all':
         # filter by day of week to create the new dataframe
-        days_ind = days.index(day)
+        days_ind = days_ls.index(day)
 
         # filter by month to create the new dataframe
         df_mask = df['day_of_week'] == days_ind
@@ -143,11 +147,11 @@ def time_stats(df):
 
     # display the most common month
     most_month = df['month'].value_counts().index[0]
-    print('... Moth is: [ {} ]'.format(months[most_month-1].capitalize())) 
+    print('... Moth is: [ {} ]'.format(months_ls[most_month-1].capitalize())) 
 
     # display the most common day of week
     most_day = df['day_of_week'].value_counts().index[0]
-    print('... Day is:  [ {} ]'.format(days[most_day].capitalize())) 
+    print('... Day is:  [ {} ]'.format(days_ls[most_day].capitalize())) 
 
     # display the most common start hour
     most_hour= df['start_hour'].value_counts().index[0]
