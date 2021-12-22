@@ -8,7 +8,7 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'washington': 'washington.csv' }
 
 cities_ls =    [ 'chicago', 'new york city','washington']
-months =    ['jannuary', 'february', 'march','april','may','june','all']
+months_ls =    ['jannuary', 'february', 'march','april','may','june','all']
 days  =     ['monday','tuesday','wednessday','thursday','friday','saturday','sunday','all']
 
 print('\n')
@@ -44,10 +44,10 @@ def get_filters():
     # get user input for month (all, january, february, ... , june)
     while True:
         print('\nPossible selections are: ')
-        print('', *months, sep=' | ')
+        print('', *months_ls, sep=' | ')
         month = input('Which month do you want to analyse?\n ').lower()
 
-        if month in months:
+        if month in months_ls:
             check = input('You want to analyze: {} (y/n)\n '.format(month.capitalize()))
             
             if check == 'y':
@@ -113,7 +113,7 @@ def load_data(city, month, day):
     # filter by month if applicable
     if month != 'all':
         # use the index of the months list to get the corresponding int
-        month_ind = months.index(month)
+        month_ind = months_ls.index(month)
 
         # filter by month to create the new dataframe
         df_mask = df['month'] == month_ind + 1
@@ -143,7 +143,7 @@ def time_stats(df):
 
     # display the most common month
     most_month = df['month'].value_counts().index[0]
-    print('... Moth is: [ {} ]'.format(months[most_month-1].capitalize())) 
+    print('... Moth is: [ {} ]'.format(months_ls[most_month-1].capitalize())) 
 
     # display the most common day of week
     most_day = df['day_of_week'].value_counts().index[0]
